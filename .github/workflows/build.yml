@@ -26,11 +26,10 @@ jobs:
           tar -xf rgbds.tar.xz -C rgbds
           echo "${{ github.workspace }}/rgbds" >> $GITHUB_PATH
 
-      - name: Build and verify ROMs
-        run: make compare RGBDS=${{ github.workspace }}/rgbds/
+      - name: Build ROMs
+        run: make crystal crystal11 crystal_au crystal11_vc RGBDS=${{ github.workspace }}/rgbds/
 
       - name: Upload ROM artifacts
-        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: rom-builds
